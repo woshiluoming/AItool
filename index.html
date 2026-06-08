@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI 工具导航</title>
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9591420516922313"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" aria-label="分类导航">
+        <div class="brand">
+          <span class="brand-mark">AI</span>
+          <div>
+            <strong>AI 工具导航</strong>
+            <span>精选、高效、可扩展</span>
+          </div>
+        </div>
+
+        <nav class="category-list" id="categoryList"></nav>
+
+        <section class="side-ad ad-slot" aria-label="侧边广告位">
+          <span>广告位</span>
+          <ins
+            class="adsbygoogle"
+            style="display: block"
+            data-ad-client="ca-pub-9591420516922313"
+            data-ad-slot="7518436511"
+            data-ad-format="auto"
+            data-full-width-responsive="true"
+          ></ins>
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+        </section>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">AI Tools Directory</p>
+            <h1>发现适合你工作流的 AI 工具</h1>
+          </div>
+          <label class="search-box">
+            <span>搜索</span>
+            <input id="searchInput" type="search" placeholder="输入工具名、用途或关键词" />
+          </label>
+        </header>
+
+        <section class="hero-ad ad-slot" aria-label="顶部横幅广告位">
+          <span>横幅广告位</span>
+          <ins
+            class="adsbygoogle"
+            style="display: block"
+            data-ad-client="ca-pub-9591420516922313"
+            data-ad-slot="7518436511"
+            data-ad-format="auto"
+            data-full-width-responsive="true"
+          ></ins>
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+        </section>
+
+        <section class="stats" aria-label="站点统计">
+          <div>
+            <strong id="toolCount">0</strong>
+            <span>收录工具</span>
+          </div>
+          <div>
+            <strong id="categoryCount">0</strong>
+            <span>分类</span>
+          </div>
+          <div>
+            <strong>每日更新</strong>
+            <span>可按需替换数据</span>
+          </div>
+        </section>
+
+        <section class="content">
+          <div class="section-head">
+            <h2 id="activeTitle">全部工具</h2>
+            <p id="resultHint">按分类浏览，或直接搜索。</p>
+          </div>
+          <div class="tool-grid" id="toolGrid"></div>
+          <p class="empty-state" id="emptyState" hidden>没有找到匹配的工具。</p>
+        </section>
+      </main>
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
