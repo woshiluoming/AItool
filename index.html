@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>AI 工具导航</title>
+    <meta
+      name="description"
+      content="AI 工具导航收录对话助手、图像生成、视频创作、编程开发、办公效率、搜索研究和音频语音工具，并提供人工整理的使用建议。"
+    />
     <script
       async
       src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9591420516922313"
@@ -24,7 +28,15 @@
 
         <nav class="category-list" id="categoryList"></nav>
 
+        <section class="sidebar-note">
+          <h2>本站整理标准</h2>
+          <p>
+            每个工具按适用场景、上手难度、中文用户体验和实际工作价值整理。本站不追求无差别堆砌外链，后续会持续补充评测、替代方案和使用建议。
+          </p>
+        </section>
+
         <section class="side-ad ad-slot" aria-label="侧边广告位">
+          <!-- <span>广告位</span> -->
           <ins
             class="adsbygoogle"
             style="display: block"
@@ -51,7 +63,42 @@
           </label>
         </header>
 
+        <section class="publisher-intro">
+          <div>
+            <h2>面向真实任务的 AI 工具索引</h2>
+            <p>
+              这个导航站主要服务内容创作者、开发者、运营人员、学生和独立创业者。我们按实际任务整理工具：写文章、做封面图、剪短视频、分析资料、生成代码或制作配音。每个分类优先展示上手门槛低、文档清晰、稳定性较好的工具。
+            </p>
+            <p>
+              如果你刚开始使用 AI，建议先从对话助手和搜索研究类工具入手；如果你已经有明确产出目标，可以直接进入图像、视频、编程或音频分类。本站会逐步补充中文教程、典型用例、价格差异和替代工具对比。
+            </p>
+          </div>
+          <aside>
+            <strong>更新方向</strong>
+            <span>人工筛选</span>
+            <span>分类说明</span>
+            <span>场景建议</span>
+            <span>持续维护</span>
+          </aside>
+        </section>
+
+        <section class="stats" aria-label="站点统计">
+          <div>
+            <strong id="toolCount">0</strong>
+            <span>收录工具</span>
+          </div>
+          <div>
+            <strong id="categoryCount">0</strong>
+            <span>分类</span>
+          </div>
+          <div>
+            <strong>人工整理</strong>
+            <span>围绕实际工作场景</span>
+          </div>
+        </section>
+
         <section class="hero-ad ad-slot" aria-label="顶部横幅广告位">
+          <!-- <span>横幅广告位</span> -->
           <ins
             class="adsbygoogle"
             style="display: block"
@@ -65,28 +112,116 @@
           </script>
         </section>
 
-        <section class="stats" aria-label="站点统计">
-          <div>
-            <strong id="toolCount">0</strong>
-            <span>收录工具</span>
-          </div>
-          <div>
-            <strong id="categoryCount">0</strong>
-            <span>分类</span>
-          </div>
-          <div>
-            <strong>每日更新</strong>
-          </div>
-        </section>
-
         <section class="content">
           <div class="section-head">
             <h2 id="activeTitle">全部工具</h2>
             <p id="resultHint">按分类浏览，或直接搜索。</p>
           </div>
           <div class="tool-grid" id="toolGrid"></div>
+          <noscript>
+            <div class="article-list">
+              <article>
+                <h3>对话助手</h3>
+                <p>适合写作、问答、代码辅助、翻译、总结和资料整理，代表工具包括 ChatGPT、Claude 和 Gemini。</p>
+              </article>
+              <article>
+                <h3>图像与视频创作</h3>
+                <p>适合封面图、视觉概念、短视频、镜头生成和创意探索，使用前应确认商用授权和素材来源。</p>
+              </article>
+              <article>
+                <h3>编程开发</h3>
+                <p>适合代码补全、项目理解、测试生成和重构建议，复杂修改建议结合版本控制和测试结果一起判断。</p>
+              </article>
+              <article>
+                <h3>搜索研究与办公效率</h3>
+                <p>适合信息检索、来源整理、知识库管理和会议纪要处理，发布前应对关键事实进行人工核验。</p>
+              </article>
+            </div>
+          </noscript>
           <p class="empty-state" id="emptyState" hidden>没有找到匹配的工具。</p>
         </section>
+
+        <section class="guide-section">
+          <div class="section-head">
+            <h2>分类选择建议</h2>
+            <p>按任务目标选择工具，通常比按品牌名搜索更高效。</p>
+          </div>
+          <div class="guide-grid">
+            <article>
+              <h3>写作、资料整理和通用问答</h3>
+              <p>
+                优先选择对话助手类工具。它们适合做大纲、改写、翻译、总结会议纪要、解释概念和生成初稿。使用时最好给出背景、目标读者、输出格式和限制条件，这样结果更稳定。
+              </p>
+            </article>
+            <article>
+              <h3>查资料和做选题研究</h3>
+              <p>
+                搜索研究类工具更适合需要来源、引用和事实核验的任务。建议把它们用于第一轮信息收集，再回到对话助手中整理结构，避免把未经核验的回答直接发布。
+              </p>
+            </article>
+            <article>
+              <h3>图片、海报和视觉概念</h3>
+              <p>
+                图像生成工具适合做封面、概念图、产品氛围图和风格探索。正式商用前要检查授权条款、人物肖像、品牌标识和图片细节，必要时再进入设计软件做二次处理。
+              </p>
+            </article>
+            <article>
+              <h3>代码开发和项目维护</h3>
+              <p>
+                编程开发类工具适合代码补全、单元测试、重构建议和阅读旧项目。复杂项目中不要只看单个文件，要让工具理解目录结构、依赖关系和测试结果，再决定是否采纳修改。
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section class="guide-section">
+          <div class="section-head">
+            <h2>本站内容计划</h2>
+            <p>让每个入口都有判断依据，而不是只有一个跳转链接。</p>
+          </div>
+          <div class="article-list">
+            <article>
+              <h3>AI 工具收录原则</h3>
+              <p>
+                优先收录可公开访问、产品信息清晰、近期仍在维护、适合真实工作流的工具。对于同类产品，会关注免费额度、中文输入表现、导出能力、团队协作、隐私设置和学习成本。
+              </p>
+            </article>
+            <article>
+              <h3>如何判断一个 AI 工具是否值得长期使用</h3>
+              <p>
+                可以从三个角度判断：结果质量是否稳定，是否能融入你已有的软件流程，是否能导出可继续编辑的成果。只在演示中惊艳但无法稳定复用的工具，不一定适合作为主力工具。
+              </p>
+            </article>
+            <article>
+              <h3>使用 AI 工具时需要注意什么</h3>
+              <p>
+                不要上传敏感资料到不了解隐私政策的服务；不要把 AI 输出当成未经核验的事实；涉及医疗、法律、投资和重要合同的内容，应当由专业人士或可靠来源再次确认。
+              </p>
+            </article>
+          </div>
+        </section>
+
+        <section class="faq-section">
+          <h2>常见问题</h2>
+          <details>
+            <summary>这个网站会持续更新吗？</summary>
+            <p>会。后续可以按分类继续扩展工具数量，也可以加入详细评测页、教程页和工具对比页。</p>
+          </details>
+          <details>
+            <summary>为什么同一个分类里没有收录所有工具？</summary>
+            <p>本站更偏向人工筛选和实用场景，不追求无差别堆砌链接。工具稳定性、上手体验和实际用途都会影响收录顺序。</p>
+          </details>
+          <details>
+            <summary>AI 工具输出可以直接商用吗？</summary>
+            <p>不同工具的授权条款不同。商用前应查看对应产品的服务条款，特别是图片、视频、声音克隆和含有第三方素材的内容。</p>
+          </details>
+        </section>
+
+        <footer class="site-footer">
+          <a href="./about.html">关于本站</a>
+          <a href="./privacy.html">隐私政策</a>
+          <a href="./contact.html">联系与投稿</a>
+        </footer>
       </main>
     </div>
 
