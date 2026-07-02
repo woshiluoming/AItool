@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cursor 使用场景整理 - AI 工具导航</title>
+    <meta name="description" content="整理 Cursor 在项目级代码理解、重构、调试和测试补充中的使用方式。" />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <main class="plain-page">
+      <header>
+        <p class="eyebrow">Tool</p>
+        <h1>Cursor 使用场景整理</h1>
+      </header>
+      <section>
+        <h2>适合做什么</h2>
+        <p>
+          Cursor 适合项目级代码理解、局部重构、调试辅助、测试补充和代码解释。相比只在网页里提问，把 AI 放进编辑器可以让它更好地读取上下文，理解当前文件和相关依赖。
+        </p>
+      </section>
+      <section>
+        <h2>推荐用法</h2>
+        <p>
+          使用 Cursor 时，可以先让它解释某个模块的职责，再要求它给出修改方案。真正执行改动前，最好让它列出会影响的文件、边界情况和需要补充的测试。这样可以减少一次性大改带来的风险。
+        </p>
+      </section>
+      <section>
+        <h2>注意事项</h2>
+        <p>
+          AI 编程助手可能生成符合语法但不符合项目约定的代码。建议每次改动都通过版本控制查看差异，并运行测试或至少进行手动验证。对于认证、支付、权限和数据删除等敏感逻辑，更需要人工审查。
+        </p>
+      </section>
+      <footer class="site-footer">
+        <a href="../index.html">返回首页</a>
+        <a href="https://cursor.com/" target="_blank" rel="noreferrer">访问官网</a>
+      </footer>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>如何把 AI 编程助手用于真实项目 - AI 工具导航</title>
+    <meta name="description" content="介绍在真实项目中使用 AI 编程助手的方式：需求拆解、代码阅读、测试、重构和审查。" />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <main class="plain-page">
+      <header>
+        <p class="eyebrow">Guide</p>
+        <h1>如何把 AI 编程助手用于真实项目</h1>
+      </header>
+      <section>
+        <h2>让 AI 先理解上下文</h2>
+        <p>
+          在真实项目里，AI 编程助手最有价值的地方不是一次性生成大量代码，而是帮助你理解已有结构、发现可能的修改点、补充测试和解释复杂逻辑。使用前应尽量提供相关文件、错误信息、运行环境和目标行为，否则它很容易根据通用经验给出看似正确但不适合项目的答案。
+        </p>
+      </section>
+      <section>
+        <h2>更稳的使用流程</h2>
+        <ul>
+          <li>先让 AI 总结相关代码的职责和数据流。</li>
+          <li>再让它提出两到三种修改方案，并说明风险。</li>
+          <li>要求它把改动控制在最小范围内，避免无关重构。</li>
+          <li>让它补充测试用例，覆盖正常路径和边界条件。</li>
+          <li>最后人工审查 diff，重点看安全、性能和兼容性。</li>
+        </ul>
+      </section>
+      <section>
+        <h2>不要跳过验证</h2>
+        <p>
+          AI 生成的代码可能在语法上正确，却不符合项目约定，也可能漏掉权限、并发、空值和异常处理。真正可靠的工作流应该包含测试、代码审查和小步提交。把 AI 当成结对助手，而不是自动合并代码的工具，会更安全。
+        </p>
+      </section>
+      <footer class="site-footer">
+        <a href="../index.html">返回首页</a>
+        <a href="../about.html">关于本站</a>
+      </footer>
+    </main>
+  </body>
+</html>
