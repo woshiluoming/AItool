@@ -2,12 +2,24 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://a-itool-psi.vercel.app/</loc><priority>1.0</priority></url>
   <url><loc>https://a-itool-psi.vercel.app/about.html</loc><priority>0.7</priority></url>
+  <url><loc>https://a-itool-psi.vercel.app/methodology.html</loc><priority>0.8</priority></url>
+  <url><loc>https://a-itool-psi.vercel.app/resources.html</loc><priority>0.8</priority></url>
+  <url><loc>https://a-itool-psi.vercel.app/glossary.html</loc><priority>0.8</priority></url>
   <url><loc>https://a-itool-psi.vercel.app/privacy.html</loc><priority>0.7</priority></url>
   <url><loc>https://a-itool-psi.vercel.app/contact.html</loc><priority>0.7</priority></url>
   <url><loc>https://a-itool-psi.vercel.app/guides/beginner-ai-tools.html</loc><priority>0.8</priority></url>
   <url><loc>https://a-itool-psi.vercel.app/guides/writing-research-workflow.html</loc><priority>0.8</priority></url>
   <url><loc>https://a-itool-psi.vercel.app/guides/image-video-commercial-checklist.html</loc><priority>0.8</priority></url>
   <url><loc>https://a-itool-psi.vercel.app/guides/coding-assistant-practice.html</loc><priority>0.8</priority></url>
+  <url><loc>https://a-itool-psi.vercel.app/comparisons/chatgpt-vs-claude.html</loc><priority>0.8</priority></url>
+  <url><loc>https://a-itool-psi.vercel.app/comparisons/ai-search-tools.html</loc><priority>0.8</priority></url>
+  <url><loc>https://a-itool-psi.vercel.app/use-cases/content-creator-stack.html</loc><priority>0.8</priority></url>
+  <url><loc>https://a-itool-psi.vercel.app/use-cases/student-research-stack.html</loc><priority>0.8</priority></url>
+  <url><loc>https://a-itool-psi.vercel.app/use-cases/office-productivity-stack.html</loc><priority>0.8</priority></url>
+  <url><loc>https://a-itool-psi.vercel.app/topics/prompting-basics.html</loc><priority>0.8</priority></url>
+  <url><loc>https://a-itool-psi.vercel.app/topics/privacy-and-ai-tools.html</loc><priority>0.8</priority></url>
+  <url><loc>https://a-itool-psi.vercel.app/topics/ai-tool-evaluation.html</loc><priority>0.8</priority></url>
+  <url><loc>https://a-itool-psi.vercel.app/topics/build-personal-ai-workflow.html</loc><priority>0.8</priority></url>
   <url><loc>https://a-itool-psi.vercel.app/tools/chatgpt.html</loc><priority>0.8</priority></url>
   <url><loc>https://a-itool-psi.vercel.app/tools/claude.html</loc><priority>0.8</priority></url>
   <url><loc>https://a-itool-psi.vercel.app/tools/perplexity.html</loc><priority>0.8</priority></url>

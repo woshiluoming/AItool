@@ -1,0 +1,861 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Skill 专题 - 创建可打包的 AI Skill</title>
+    <meta name="description" content="通过交互式工具创建和打包 AI Skill，提供预设模板和自定义配置功能。" />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <main class="skill-builder">
+      <header>
+        <p class="eyebrow">Skill Builder</p>
+        <h1>创建可打包的 AI Skill</h1>
+        <p>选择模板、配置参数、预览效果，一键打包下载你的专属 Skill。</p>
+      </header>
+
+      <nav class="skill-steps">
+        <button class="step-btn active" data-step="1">
+          <span class="step-number">01</span>
+          <span>选择模板</span>
+        </button>
+        <button class="step-btn" data-step="2">
+          <span class="step-number">02</span>
+          <span>配置参数</span>
+        </button>
+        <button class="step-btn" data-step="3">
+          <span class="step-number">03</span>
+          <span>预览效果</span>
+        </button>
+        <button class="step-btn" data-step="4">
+          <span class="step-number">04</span>
+          <span>打包下载</span>
+        </button>
+      </nav>
+
+      <section class="skill-section" id="section-template">
+        <div class="section-head">
+          <h2>Skill 模板库</h2>
+          <p>从预设模板中选择一个作为基础，或选择空白模板从头开始。</p>
+        </div>
+        <div class="template-grid">
+          <button class="template-card active" data-template="summary">
+            <span class="template-icon">📝</span>
+            <h3>文本摘要</h3>
+            <p>将长文本压缩为简明摘要，保留核心信息</p>
+            <div class="template-tags">
+              <span>文本处理</span>
+              <span>通用</span>
+            </div>
+          </button>
+          <button class="template-card" data-template="translation">
+            <span class="template-icon">🌐</span>
+            <h3>多语言翻译</h3>
+            <p>支持多种语言互译，保持语境和专业术语准确</p>
+            <div class="template-tags">
+              <span>翻译</span>
+              <span>多语言</span>
+            </div>
+          </button>
+          <button class="template-card" data-template="code-review">
+            <span class="template-icon">🔍</span>
+            <h3>代码审查</h3>
+            <p>分析代码质量、安全性和最佳实践合规性</p>
+            <div class="template-tags">
+              <span>编程</span>
+              <span>质量保障</span>
+            </div>
+          </button>
+          <button class="template-card" data-template="email">
+            <span class="template-icon">✉️</span>
+            <h3>邮件起草</h3>
+            <p>根据场景生成专业邮件，支持多种语气风格</p>
+            <div class="template-tags">
+              <span>办公</span>
+              <span>沟通</span>
+            </div>
+          </button>
+          <button class="template-card" data-template="meeting">
+            <span class="template-icon">📋</span>
+            <h3>会议纪要</h3>
+            <p>整理会议记录为结构化纪要，包含待办事项</p>
+            <div class="template-tags">
+              <span>办公</span>
+              <span>整理</span>
+            </div>
+          </button>
+          <button class="template-card" data-template="analysis">
+            <span class="template-icon">📊</span>
+            <h3>数据分析</h3>
+            <p>分析数据趋势、生成可视化描述和洞察报告</p>
+            <div class="template-tags">
+              <span>数据</span>
+              <span>洞察</span>
+            </div>
+          </button>
+          <button class="template-card" data-template="blank">
+            <span class="template-icon">🧩</span>
+            <h3>空白模板</h3>
+            <p>从头开始创建自定义 Skill</p>
+            <div class="template-tags">
+              <span>自定义</span>
+              <span>灵活</span>
+            </div>
+          </button>
+        </div>
+      </section>
+
+      <section class="skill-section" id="section-config">
+        <div class="section-head">
+          <h2>配置 Skill 参数</h2>
+          <p>自定义 Skill 的各项参数，创建符合你需求的专属 Skill。</p>
+        </div>
+        <div class="config-panel">
+          <div class="config-left">
+            <div class="config-group">
+              <label>
+                <span>Skill 名称</span>
+                <input type="text" id="skillName" placeholder="输入 Skill 名称" />
+              </label>
+              <label>
+                <span>Skill 描述</span>
+                <textarea id="skillDescription" rows="3" placeholder="描述这个 Skill 的用途和特点"></textarea>
+              </label>
+              <label>
+                <span>适用场景</span>
+                <input type="text" id="skillScenario" placeholder="例如：日常写作、代码开发、数据分析" />
+              </label>
+            </div>
+
+            <div class="config-group">
+              <h4>输入参数</h4>
+              <div id="inputFields">
+                <div class="input-field-row">
+                  <input type="text" class="input-name" placeholder="参数名称" value="input_text" />
+                  <input type="text" class="input-desc" placeholder="参数描述" value="待处理的文本内容" />
+                  <select class="input-type">
+                    <option value="text">文本</option>
+                    <option value="textarea">长文本</option>
+                    <option value="select">下拉选择</option>
+                    <option value="number">数字</option>
+                    <option value="boolean">开关</option>
+                  </select>
+                  <button type="button" class="remove-field">×</button>
+                </div>
+              </div>
+              <button type="button" id="addInputField">+ 添加参数</button>
+            </div>
+
+            <div class="config-group">
+              <h4>输出配置</h4>
+              <label>
+                <span>输出格式</span>
+                <select id="outputFormat">
+                  <option value="markdown">Markdown</option>
+                  <option value="plain">纯文本</option>
+                  <option value="json">JSON</option>
+                  <option value="html">HTML</option>
+                </select>
+              </label>
+              <label>
+                <span>输出语言</span>
+                <select id="outputLanguage">
+                  <option value="zh">中文</option>
+                  <option value="en">English</option>
+                  <option value="auto">自动匹配输入</option>
+                </select>
+              </label>
+            </div>
+          </div>
+
+          <div class="config-right">
+            <div class="config-group">
+              <h4>提示词模板</h4>
+              <textarea id="promptTemplate" rows="12" placeholder="输入提示词模板，使用 {{参数名}} 引用输入参数"></textarea>
+            </div>
+
+            <div class="config-group">
+              <h4>约束条件</h4>
+              <div class="constraint-options">
+                <label><input type="checkbox" id="constraint-length" /> 控制输出长度</label>
+                <label><input type="checkbox" id="constraint-tone" /> 指定语气风格</label>
+                <label><input type="checkbox" id="constraint-format" /> 强制输出格式</label>
+                <label><input type="checkbox" id="constraint-safe" /> 安全内容过滤</label>
+                <label><input type="checkbox" id="constraint-reference" /> 要求引用来源</label>
+              </div>
+            </div>
+
+            <div class="config-group">
+              <h4>高级设置</h4>
+              <label>
+                <span>模型温度 (Temperature)</span>
+                <input type="range" id="modelTemp" min="0" max="2" step="0.1" value="0.7" />
+                <span class="range-value">0.7</span>
+              </label>
+              <label>
+                <span>最大输出长度</span>
+                <input type="number" id="maxLength" value="2000" />
+              </label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="skill-section" id="section-preview">
+        <div class="section-head">
+          <h2>实时预览</h2>
+          <p>查看 Skill 的完整配置和渲染效果。</p>
+        </div>
+        <div class="preview-panel">
+          <div class="preview-tabs">
+            <button class="preview-tab active" data-preview="config">配置预览</button>
+            <button class="preview-tab" data-preview="prompt">提示词预览</button>
+            <button class="preview-tab" data-preview="json">JSON 结构</button>
+          </div>
+          <div class="preview-content">
+            <div class="preview-pane active" id="preview-config">
+              <div class="config-preview-card">
+                <h3 id="previewName">文本摘要 Skill</h3>
+                <p id="previewDesc">将长文本压缩为简明摘要，保留核心信息</p>
+                <div class="preview-meta">
+                  <span>适用场景：<strong id="previewScenario">文本处理</strong></span>
+                  <span>输出格式：<strong id="previewFormat">Markdown</strong></span>
+                  <span>输出语言：<strong id="previewLang">中文</strong></span>
+                </div>
+                <div class="preview-inputs">
+                  <h4>输入参数</h4>
+                  <div id="previewInputList"></div>
+                </div>
+                <div class="preview-constraints">
+                  <h4>约束条件</h4>
+                  <div id="previewConstraints"></div>
+                </div>
+              </div>
+            </div>
+            <div class="preview-pane" id="preview-prompt">
+              <pre id="previewPrompt"></pre>
+            </div>
+            <div class="preview-pane" id="preview-json">
+              <pre id="previewJson"></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="skill-section" id="section-download">
+        <div class="section-head">
+          <h2>打包下载</h2>
+          <p>选择打包格式，下载你的 Skill 文件。</p>
+        </div>
+        <div class="download-panel">
+          <div class="format-options">
+            <label class="format-card">
+              <input type="radio" name="packFormat" value="json" checked />
+              <span class="format-icon">📄</span>
+              <span class="format-name">JSON 格式</span>
+              <span class="format-desc">标准的 JSON 配置文件，便于程序读取</span>
+            </label>
+            <label class="format-card">
+              <input type="radio" name="packFormat" value="yaml" />
+              <span class="format-icon">📋</span>
+              <span class="format-name">YAML 格式</span>
+              <span class="format-desc">人类可读的配置格式，适合文档场景</span>
+            </label>
+            <label class="format-card">
+              <input type="radio" name="packFormat" value="md" />
+              <span class="format-icon">📝</span>
+              <span class="format-name">Markdown 格式</span>
+              <span class="format-desc">包含完整文档的 Markdown 文件</span>
+            </label>
+            <label class="format-card">
+              <input type="radio" name="packFormat" value="zip" />
+              <span class="format-icon">📦</span>
+              <span class="format-name">完整打包 (ZIP)</span>
+              <span class="format-desc">包含 JSON、README 和示例文件的压缩包</span>
+            </label>
+          </div>
+          <div class="download-actions">
+            <button type="button" id="downloadSkill">打包下载 Skill</button>
+            <button type="button" id="resetSkill">重置为默认模板</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="skill-section" id="section-knowledge">
+        <div class="section-head">
+          <h2>Skill 知识与最佳实践</h2>
+          <p>了解如何设计高质量的 AI Skill。</p>
+        </div>
+        <div class="knowledge-grid">
+          <article>
+            <h3>什么是 AI Skill</h3>
+            <p>AI Skill 是一种封装了特定能力的可复用组件，包含提示词模板、输入参数定义、输出格式规范和约束条件。它可以被 AI 系统加载和调用，实现特定任务的自动化处理。</p>
+          </article>
+          <article>
+            <h3>设计原则</h3>
+            <ul>
+              <li>保持提示词简洁明确</li>
+              <li>明确定义输入输出格式</li>
+              <li>设置适当的约束条件</li>
+              <li>考虑多语言支持</li>
+              <li>提供清晰的文档说明</li>
+            </ul>
+          </article>
+          <article>
+            <h3>应用场景</h3>
+            <ul>
+              <li>企业内部知识库问答</li>
+              <li>自动化内容生成</li>
+              <li>代码审查和质量检查</li>
+              <li>数据分析和报告生成</li>
+              <li>客户服务和支持</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+        <a href="../index.html">返回首页</a>
+        <a href="./ai-agents-guide.html">智能体专题</a>
+        <a href="./privacy-and-ai-tools.html">隐私边界</a>
+        <a href="../guides/beginner-ai-tools.html">新手入门指南</a>
+      </footer>
+    </main>
+
+    <script>
+      const templates = {
+        summary: {
+          name: "文本摘要",
+          description: "将长文本压缩为简明摘要，保留核心信息和关键要点",
+          scenario: "文本处理、内容整理、信息提取",
+          inputs: [
+            { name: "input_text", desc: "待处理的文本内容", type: "textarea" },
+            { name: "summary_length", desc: "期望摘要长度（短/中/长）", type: "select" }
+          ],
+          prompt: "你是一名专业的文本摘要专家。请将以下文本压缩为简明摘要，保留核心信息和关键要点。\n\n文本内容：\n{{input_text}}\n\n摘要要求：{{summary_length}}\n\n请输出结构化的摘要，包含：\n1. 核心观点\n2. 关键数据\n3. 主要结论",
+          outputFormat: "markdown",
+          outputLanguage: "zh",
+          constraints: ["控制输出长度", "强制输出格式"],
+          temperature: 0.3,
+          maxLength: 500
+        },
+        translation: {
+          name: "多语言翻译",
+          description: "支持多种语言互译，保持语境和专业术语准确",
+          scenario: "文档翻译、跨语言沟通、国际化内容",
+          inputs: [
+            { name: "input_text", desc: "待翻译的文本", type: "textarea" },
+            { name: "target_lang", desc: "目标语言", type: "select" }
+          ],
+          prompt: "你是一名专业的多语言翻译专家。请将以下文本翻译成{{target_lang}}，保持语境准确和专业术语正确。\n\n原文：\n{{input_text}}\n\n翻译要求：\n- 保持原意不变\n- 专业术语准确\n- 语句通顺自然\n- 格式与原文一致",
+          outputFormat: "plain",
+          outputLanguage: "auto",
+          constraints: ["安全内容过滤"],
+          temperature: 0.2,
+          maxLength: 2000
+        },
+        "code-review": {
+          name: "代码审查",
+          description: "分析代码质量、安全性和最佳实践合规性",
+          scenario: "代码开发、代码审查、质量保障",
+          inputs: [
+            { name: "code", desc: "待审查的代码", type: "textarea" },
+            { name: "language", desc: "编程语言", type: "select" }
+          ],
+          prompt: "你是一名资深的{{language}}工程师。请审查以下代码，重点关注：\n\n代码内容：\n{{code}}\n\n审查维度：\n1. 潜在 Bug 和边界条件\n2. 安全性问题\n3. 代码可读性和可维护性\n4. 是否符合最佳实践\n5. 性能优化建议\n6. 需要补充的测试用例\n\n请给出结构化的审查报告。",
+          outputFormat: "markdown",
+          outputLanguage: "zh",
+          constraints: ["要求引用来源"],
+          temperature: 0.4,
+          maxLength: 1500
+        },
+        email: {
+          name: "邮件起草",
+          description: "根据场景生成专业邮件，支持多种语气风格",
+          scenario: "商务沟通、工作邮件、日常交流",
+          inputs: [
+            { name: "purpose", desc: "邮件目的", type: "select" },
+            { name: "recipient", desc: "收件人", type: "text" },
+            { name: "key_points", desc: "关键要点", type: "textarea" },
+            { name: "tone", desc: "语气风格（正式/友好/简洁）", type: "select" }
+          ],
+          prompt: "你是一名专业的商务邮件写作专家。请根据以下信息起草一封邮件：\n\n邮件目的：{{purpose}}\n收件人：{{recipient}}\n关键要点：\n{{key_points}}\n\n语气风格：{{tone}}\n\n要求：\n- 结构清晰，逻辑分明\n- 表达专业得体\n- 包含明确的行动号召\n- 符合商务邮件规范",
+          outputFormat: "markdown",
+          outputLanguage: "zh",
+          constraints: ["指定语气风格"],
+          temperature: 0.5,
+          maxLength: 1000
+        },
+        meeting: {
+          name: "会议纪要",
+          description: "整理会议记录为结构化纪要，包含待办事项",
+          scenario: "会议记录、团队协作、项目管理",
+          inputs: [
+            { name: "meeting_content", desc: "会议记录内容", type: "textarea" },
+            { name: "meeting_topic", desc: "会议主题", type: "text" }
+          ],
+          prompt: "你是一名专业的会议纪要整理专家。请将以下会议记录整理为结构化纪要：\n\n会议主题：{{meeting_topic}}\n\n会议记录：\n{{meeting_content}}\n\n请输出包含以下部分的结构化纪要：\n1. 会议概述\n2. 讨论要点\n3. 达成共识\n4. 待办事项（含负责人和截止时间）\n5. 未解决问题\n6. 下一步计划",
+          outputFormat: "markdown",
+          outputLanguage: "zh",
+          constraints: ["强制输出格式"],
+          temperature: 0.3,
+          maxLength: 1500
+        },
+        analysis: {
+          name: "数据分析",
+          description: "分析数据趋势、生成可视化描述和洞察报告",
+          scenario: "数据分析、业务洞察、报告生成",
+          inputs: [
+            { name: "data", desc: "数据内容", type: "textarea" },
+            { name: "analysis_type", desc: "分析类型（趋势/对比/预测）", type: "select" }
+          ],
+          prompt: "你是一名专业的数据分析师。请对以下数据进行{{analysis_type}}分析：\n\n数据内容：\n{{data}}\n\n分析要求：\n1. 识别关键数据点\n2. 分析数据趋势和模式\n3. 发现异常值和潜在问题\n4. 提供业务洞察和建议\n5. 生成可视化描述\n\n请输出结构化的分析报告。",
+          outputFormat: "markdown",
+          outputLanguage: "zh",
+          constraints: ["控制输出长度", "要求引用来源"],
+          temperature: 0.6,
+          maxLength: 2000
+        },
+        blank: {
+          name: "自定义 Skill",
+          description: "自定义的 AI Skill",
+          scenario: "",
+          inputs: [
+            { name: "input_text", desc: "输入文本", type: "textarea" }
+          ],
+          prompt: "请处理以下输入：\n\n{{input_text}}\n\n请输出处理结果。",
+          outputFormat: "markdown",
+          outputLanguage: "zh",
+          constraints: [],
+          temperature: 0.7,
+          maxLength: 2000
+        }
+      };
+
+      let currentTemplate = "summary";
+
+      const templateCards = document.querySelectorAll(".template-card");
+      const skillName = document.querySelector("#skillName");
+      const skillDescription = document.querySelector("#skillDescription");
+      const skillScenario = document.querySelector("#skillScenario");
+      const inputFields = document.querySelector("#inputFields");
+      const addInputFieldBtn = document.querySelector("#addInputField");
+      const promptTemplate = document.querySelector("#promptTemplate");
+      const outputFormat = document.querySelector("#outputFormat");
+      const outputLanguage = document.querySelector("#outputLanguage");
+      const constraintChecks = document.querySelectorAll(".constraint-options input");
+      const modelTemp = document.querySelector("#modelTemp");
+      const maxLength = document.querySelector("#maxLength");
+
+      templateCards.forEach(card => {
+        card.addEventListener("click", () => {
+          templateCards.forEach(c => c.classList.remove("active"));
+          card.classList.add("active");
+          currentTemplate = card.dataset.template;
+          loadTemplate(currentTemplate);
+        });
+      });
+
+      function loadTemplate(templateName) {
+        const template = templates[templateName];
+        skillName.value = template.name;
+        skillDescription.value = template.description;
+        skillScenario.value = template.scenario;
+        promptTemplate.value = template.prompt;
+        outputFormat.value = template.outputFormat;
+        outputLanguage.value = template.outputLanguage;
+        modelTemp.value = template.temperature;
+        modelTemp.nextElementSibling.textContent = template.temperature;
+        maxLength.value = template.maxLength;
+
+        inputFields.innerHTML = template.inputs.map((input, index) => `
+          <div class="input-field-row">
+            <input type="text" class="input-name" placeholder="参数名称" value="${input.name}" />
+            <input type="text" class="input-desc" placeholder="参数描述" value="${input.desc}" />
+            <select class="input-type">
+              <option value="text" ${input.type === "text" ? "selected" : ""}>文本</option>
+              <option value="textarea" ${input.type === "textarea" ? "selected" : ""}>长文本</option>
+              <option value="select" ${input.type === "select" ? "selected" : ""}>下拉选择</option>
+              <option value="number" ${input.type === "number" ? "selected" : ""}>数字</option>
+              <option value="boolean" ${input.type === "boolean" ? "selected" : ""}>开关</option>
+            </select>
+            <button type="button" class="remove-field">×</button>
+          </div>
+        `).join("");
+
+        constraintChecks.forEach(check => {
+          check.checked = template.constraints.includes(check.nextElementSibling.textContent);
+        });
+
+        setupInputFieldEvents();
+        updatePreview();
+      }
+
+      addInputFieldBtn.addEventListener("click", () => {
+        inputFields.innerHTML += `
+          <div class="input-field-row">
+            <input type="text" class="input-name" placeholder="参数名称" />
+            <input type="text" class="input-desc" placeholder="参数描述" />
+            <select class="input-type">
+              <option value="text">文本</option>
+              <option value="textarea">长文本</option>
+              <option value="select">下拉选择</option>
+              <option value="number">数字</option>
+              <option value="boolean">开关</option>
+            </select>
+            <button type="button" class="remove-field">×</button>
+          </div>
+        `;
+        setupInputFieldEvents();
+      });
+
+      function setupInputFieldEvents() {
+        document.querySelectorAll(".remove-field").forEach(btn => {
+          btn.addEventListener("click", function() {
+            this.parentElement.remove();
+            updatePreview();
+          });
+        });
+      }
+
+      modelTemp.addEventListener("input", function() {
+        this.nextElementSibling.textContent = this.value;
+      });
+
+      const previewTabs = document.querySelectorAll(".preview-tab");
+      const previewPanes = document.querySelectorAll(".preview-pane");
+
+      previewTabs.forEach(tab => {
+        tab.addEventListener("click", () => {
+          previewTabs.forEach(t => t.classList.remove("active"));
+          previewPanes.forEach(p => p.classList.remove("active"));
+          tab.classList.add("active");
+          document.querySelector(`#preview-${tab.dataset.preview}`).classList.add("active");
+        });
+      });
+
+      function updatePreview() {
+        const inputs = [];
+        document.querySelectorAll(".input-field-row").forEach(row => {
+          inputs.push({
+            name: row.querySelector(".input-name").value,
+            desc: row.querySelector(".input-desc").value,
+            type: row.querySelector(".input-type").value
+          });
+        });
+
+        const constraints = [];
+        constraintChecks.forEach(check => {
+          if (check.checked) {
+            constraints.push(check.nextElementSibling.textContent);
+          }
+        });
+
+        document.querySelector("#previewName").textContent = skillName.value || "未命名 Skill";
+        document.querySelector("#previewDesc").textContent = skillDescription.value || "暂无描述";
+        document.querySelector("#previewScenario").textContent = skillScenario.value || "未指定";
+        document.querySelector("#previewFormat").textContent = outputFormat.options[outputFormat.selectedIndex].text;
+        document.querySelector("#previewLang").textContent = outputLanguage.options[outputLanguage.selectedIndex].text;
+
+        document.querySelector("#previewInputList").innerHTML = inputs.map(input => `
+          <div class="preview-input-item">
+            <span class="input-label">${input.name}</span>
+            <span class="input-desc">${input.desc} (${input.type})</span>
+          </div>
+        `).join("");
+
+        document.querySelector("#previewConstraints").innerHTML = constraints.length ? 
+          constraints.map(c => `<span class="constraint-tag">${c}</span>`).join("") : 
+          "<span class='no-constraints'>无约束条件</span>";
+
+        document.querySelector("#previewPrompt").textContent = promptTemplate.value || "暂无提示词模板";
+
+        const skillData = {
+          name: skillName.value,
+          description: skillDescription.value,
+          scenario: skillScenario.value,
+          inputs: inputs,
+          prompt: promptTemplate.value,
+          output: {
+            format: outputFormat.value,
+            language: outputLanguage.value
+          },
+          constraints: constraints,
+          model: {
+            temperature: parseFloat(modelTemp.value),
+            maxLength: parseInt(maxLength.value)
+          },
+          version: "1.0.0",
+          createdAt: new Date().toISOString()
+        };
+
+        document.querySelector("#previewJson").textContent = JSON.stringify(skillData, null, 2);
+      }
+
+      const inputs = [skillName, skillDescription, skillScenario, promptTemplate, outputFormat, outputLanguage, modelTemp, maxLength, ...constraintChecks];
+      inputs.forEach(input => {
+        input.addEventListener("input", updatePreview);
+        input.addEventListener("change", updatePreview);
+      });
+
+      const downloadSkillBtn = document.querySelector("#downloadSkill");
+      const resetSkillBtn = document.querySelector("#resetSkill");
+
+      downloadSkillBtn.addEventListener("click", () => {
+        const format = document.querySelector("input[name='packFormat']:checked").value;
+        const inputs = [];
+        document.querySelectorAll(".input-field-row").forEach(row => {
+          inputs.push({
+            name: row.querySelector(".input-name").value,
+            desc: row.querySelector(".input-desc").value,
+            type: row.querySelector(".input-type").value
+          });
+        });
+
+        const constraints = [];
+        constraintChecks.forEach(check => {
+          if (check.checked) {
+            constraints.push(check.nextElementSibling.textContent);
+          }
+        });
+
+        const skillData = {
+          name: skillName.value,
+          description: skillDescription.value,
+          scenario: skillScenario.value,
+          inputs: inputs,
+          prompt: promptTemplate.value,
+          output: {
+            format: outputFormat.value,
+            language: outputLanguage.value
+          },
+          constraints: constraints,
+          model: {
+            temperature: parseFloat(modelTemp.value),
+            maxLength: parseInt(maxLength.value)
+          },
+          version: "1.0.0",
+          createdAt: new Date().toISOString(),
+          tags: ["ai-skill", skillScenario.value]
+        };
+
+        let content, filename, mimeType;
+
+        switch (format) {
+          case "json":
+            content = JSON.stringify(skillData, null, 2);
+            filename = `${skillData.name}.skill.json`;
+            mimeType = "application/json";
+            break;
+          case "yaml":
+            content = jsonToYaml(skillData);
+            filename = `${skillData.name}.skill.yaml`;
+            mimeType = "text/yaml";
+            break;
+          case "md":
+            content = generateMarkdown(skillData);
+            filename = `${skillData.name}.skill.md`;
+            mimeType = "text/markdown";
+            break;
+          case "zip":
+            generateZip(skillData);
+            return;
+        }
+
+        const blob = new Blob([content], { type: mimeType });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = filename;
+        a.click();
+        URL.revokeObjectURL(url);
+      });
+
+      resetSkillBtn.addEventListener("click", () => {
+        loadTemplate(currentTemplate);
+      });
+
+      function jsonToYaml(obj, indent = 0) {
+        let yaml = "";
+        for (const [key, value] of Object.entries(obj)) {
+          const padding = "  ".repeat(indent);
+          if (typeof value === "object" && value !== null && !Array.isArray(value)) {
+            yaml += `${padding}${key}:\n${jsonToYaml(value, indent + 1)}`;
+          } else if (Array.isArray(value)) {
+            yaml += `${padding}${key}:\n`;
+            value.forEach(item => {
+              if (typeof item === "object") {
+                yaml += `${padding}  - \n${jsonToYaml(item, indent + 2)}`;
+              } else {
+                yaml += `${padding}  - ${item}\n`;
+              }
+            });
+          } else {
+            yaml += `${padding}${key}: ${typeof value === "string" ? `"${value.replace(/"/g, '\\"')}"` : value}\n`;
+          }
+        }
+        return yaml;
+      }
+
+      function generateMarkdown(data) {
+        return `# ${data.name}
+
+## 概述
+
+${data.description}
+
+### 适用场景
+
+${data.scenario || "未指定"}
+
+## 输入参数
+
+${data.inputs.map(input => `### ${input.name}
+
+- **描述**: ${input.desc}
+- **类型**: ${input.type}
+
+`).join("")}
+
+## 提示词模板
+
+\`\`\`
+${data.prompt}
+\`\`\`
+
+## 输出配置
+
+- **格式**: ${data.output.format}
+- **语言**: ${data.output.language}
+
+## 约束条件
+
+${data.constraints.length ? data.constraints.map(c => `- ${c}`).join("\n") : "- 无"}
+
+## 模型配置
+
+- **温度**: ${data.model.temperature}
+- **最大长度**: ${data.model.maxLength}
+
+## 元数据
+
+- **版本**: ${data.version}
+- **创建时间**: ${new Date(data.createdAt).toLocaleString()}
+`;
+      }
+
+      function generateZip(data) {
+        const jsonContent = JSON.stringify(data, null, 2);
+        const mdContent = generateMarkdown(data);
+        const readmeContent = `# ${data.name}
+
+这是一个 AI Skill 配置文件，包含完整的提示词模板和参数定义。
+
+## 使用方法
+
+1. 将 JSON 文件加载到支持 Skill 的 AI 系统中
+2. 按照输入参数提供数据
+3. 获取结构化输出
+
+## 文件说明
+
+- \`skill.json\` - Skill 配置文件
+- \`skill.md\` - Skill 文档
+- \`README.md\` - 本文件
+
+## 技术支持
+
+如有问题，请联系开发者。
+`;
+
+        const zipContent = [
+          { name: "skill.json", content: jsonContent },
+          { name: "skill.md", content: mdContent },
+          { name: "README.md", content: readmeContent }
+        ];
+
+        let zipData = "PK";
+        zipContent.forEach((file, index) => {
+          const fileData = file.content;
+          const fileNameLen = file.name.length;
+          const fileDataLen = fileData.length;
+          const crc32 = crc32str(fileData);
+          const timestamp = new Date();
+          const timeBytes = [
+            (timestamp.getHours() << 3) | (timestamp.getMinutes() >> 3),
+            ((timestamp.getMinutes() & 7) << 5) | (timestamp.getSeconds() >> 1),
+            ((timestamp.getSeconds() & 1) << 7) | ((timestamp.getFullYear() - 1980) >> 9),
+            ((timestamp.getFullYear() - 1980) & 511),
+            timestamp.getMonth() + 1,
+            timestamp.getDate()
+          ];
+
+          const localFileHeader = [
+            0x04034B50,
+            0x0000,
+            0x0000,
+            0x0000,
+            0x0000,
+            ...timeBytes,
+            crc32,
+            fileDataLen,
+            fileDataLen,
+            fileNameLen,
+            0x0000
+          ];
+
+          const data = localFileHeader.map(n => {
+            const bytes = [];
+            for (let i = 0; i < 4; i++) bytes.push((n >> (i * 8)) & 0xff);
+            return bytes;
+          }).flat();
+
+          const fileNameBytes = file.name.split("").map(c => c.charCodeAt(0));
+          const fileDataBytes = fileData.split("").map(c => c.charCodeAt(0));
+
+          zipData += String.fromCharCode(...data, ...fileNameBytes, ...fileDataBytes);
+        });
+
+        const blob = new Blob([zipData], { type: "application/zip" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `${data.name}.skill.zip`;
+        a.click();
+        URL.revokeObjectURL(url);
+      }
+
+      function crc32str(str) {
+        let crc = 0xFFFFFFFF;
+        const table = [];
+        for (let i = 0; i < 256; i++) {
+          let c = i;
+          for (let j = 0; j < 8; j++) {
+            c = (c & 1) ? (0xEDB88320 ^ (c >>> 1)) : (c >>> 1);
+          }
+          table[i] = c;
+        }
+        for (let i = 0; i < str.length; i++) {
+          crc = table[(crc ^ str.charCodeAt(i)) & 0xFF] ^ (crc >>> 8);
+        }
+        return (crc ^ 0xFFFFFFFF) >>> 0;
+      }
+
+      const stepBtns = document.querySelectorAll(".skill-steps .step-btn");
+
+      stepBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+          const step = btn.dataset.step;
+          const sections = ["template", "config", "preview", "download"];
+          const section = document.querySelector(`#section-${sections[step - 1]}`);
+          if (section) {
+            section.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        });
+      });
+
+      loadTemplate("summary");
+    </script>
+  </body>
+</html>

@@ -1,0 +1,917 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI 智能体专题 - 设计你的专属智能体</title>
+    <meta name="description" content="通过交互式工具设计你的专属智能体，选择场景、配置能力、生成工作流、检查风险。" />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <main class="agent-workshop">
+      <header>
+        <p class="eyebrow">AI Agent Workshop</p>
+        <h1>设计你的专属智能体</h1>
+        <p>通过四步交互流程，创建符合你需求的智能体方案。</p>
+      </header>
+
+      <nav class="workshop-steps">
+        <button class="step-btn active" data-step="1">
+          <span class="step-number">01</span>
+          <span>选择场景</span>
+          <span class="step-dot"></span>
+        </button>
+        <button class="step-btn" data-step="2">
+          <span class="step-number">02</span>
+          <span>配置能力</span>
+          <span class="step-dot"></span>
+        </button>
+        <button class="step-btn" data-step="3">
+          <span class="step-number">03</span>
+          <span>生成方案</span>
+          <span class="step-dot"></span>
+        </button>
+        <button class="step-btn" data-step="4">
+          <span class="step-number">04</span>
+          <span>风险检查</span>
+        </button>
+      </nav>
+
+      <section class="workshop-section" id="section-scene">
+        <div class="section-head">
+          <h2>选择智能体场景</h2>
+          <p>从5个预设场景中选择最适合你的智能体类型。</p>
+        </div>
+        <div class="scene-selector">
+          <div class="scene-grid">
+            <button class="scene-card active" data-scene="research">
+              <span class="scene-icon">🔍</span>
+              <h3>资料研究助手</h3>
+              <p>收集资料、提取观点、列出来源和待核验问题</p>
+              <div class="scene-tags">
+                <span>搜索</span>
+                <span>阅读</span>
+                <span>分析</span>
+              </div>
+            </button>
+            <button class="scene-card" data-scene="content">
+              <span class="scene-icon">✍️</span>
+              <h3>内容运营助手</h3>
+              <p>选题、资料、脚本、标题到发布复盘全流程辅助</p>
+              <div class="scene-tags">
+                <span>写作</span>
+                <span>策划</span>
+                <span>复盘</span>
+              </div>
+            </button>
+            <button class="scene-card" data-scene="support">
+              <span class="scene-icon">💬</span>
+              <h3>客服知识库助手</h3>
+              <p>根据知识库回答问题，标记无法确认的内容</p>
+              <div class="scene-tags">
+                <span>问答</span>
+                <span>分类</span>
+                <span>升级</span>
+              </div>
+            </button>
+            <button class="scene-card" data-scene="coding">
+              <span class="scene-icon">💻</span>
+              <h3>代码维护助手</h3>
+              <p>阅读报错、定位问题、提出修复思路和测试建议</p>
+              <div class="scene-tags">
+                <span>代码</span>
+                <span>调试</span>
+                <span>测试</span>
+              </div>
+            </button>
+            <button class="scene-card" data-scene="sales">
+              <span class="scene-icon">📊</span>
+              <h3>销售线索整理助手</h3>
+              <p>整理客户资料、归类需求、生成跟进摘要</p>
+              <div class="scene-tags">
+                <span>整理</span>
+                <span>跟进</span>
+                <span>分析</span>
+              </div>
+            </button>
+          </div>
+          <div class="scene-detail" id="sceneDetail">
+            <div class="detail-header">
+              <h3 id="detailTitle">资料研究助手</h3>
+              <span class="detail-badge recommended">推荐权限级别：Level 2</span>
+            </div>
+            <div class="detail-body">
+              <div class="detail-section">
+                <strong>目标</strong>
+                <p id="detailGoal">围绕一个主题收集资料、提取观点、列出来源和待核验问题。</p>
+              </div>
+              <div class="detail-section">
+                <strong>输出</strong>
+                <p id="detailOutput">研究摘要、来源清单、观点对比表、下一步问题</p>
+              </div>
+              <div class="detail-section">
+                <strong>风险</strong>
+                <p id="detailRisk">容易把过时资料和不同语境的信息混在一起，必须打开来源核验。</p>
+              </div>
+              <div class="detail-section">
+                <strong>推荐工具</strong>
+                <div class="detail-tools" id="detailTools">
+                  <span>搜索资料</span>
+                  <span>阅读文档</span>
+                  <span>生成内容</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="workshop-section" id="section-capability">
+        <div class="section-head">
+          <h2>配置能力与权限</h2>
+          <p>选择智能体可以使用的工具，设置自动化权限级别。</p>
+        </div>
+        <div class="capability-config">
+          <div class="tools-panel">
+            <h3>授权工具</h3>
+            <div class="tool-grid">
+              <label class="tool-checkbox">
+                <input type="checkbox" name="agentTool" value="search" checked />
+                <span class="tool-icon">🔍</span>
+                <span class="tool-name">搜索资料</span>
+                <span class="tool-desc">搜索网络信息、获取来源链接</span>
+              </label>
+              <label class="tool-checkbox">
+                <input type="checkbox" name="agentTool" value="docs" checked />
+                <span class="tool-icon">📄</span>
+                <span class="tool-name">阅读文档</span>
+                <span class="tool-desc">读取和分析本地/云端文档</span>
+              </label>
+              <label class="tool-checkbox">
+                <input type="checkbox" name="agentTool" value="write" checked />
+                <span class="tool-icon">✍️</span>
+                <span class="tool-name">生成内容</span>
+                <span class="tool-desc">生成文章、报告、邮件等内容</span>
+              </label>
+              <label class="tool-checkbox">
+                <input type="checkbox" name="agentTool" value="code" />
+                <span class="tool-icon">💻</span>
+                <span class="tool-name">修改代码</span>
+                <span class="tool-desc">编写和修改代码文件</span>
+              </label>
+              <label class="tool-checkbox">
+                <input type="checkbox" name="agentTool" value="email" />
+                <span class="tool-icon">📧</span>
+                <span class="tool-name">发送邮件</span>
+                <span class="tool-desc">发送邮件和消息通知</span>
+              </label>
+              <label class="tool-checkbox">
+                <input type="checkbox" name="agentTool" value="database" />
+                <span class="tool-icon">🗄️</span>
+                <span class="tool-name">数据库操作</span>
+                <span class="tool-desc">查询和修改数据库数据</span>
+              </label>
+            </div>
+          </div>
+          <div class="permission-panel">
+            <h3>权限级别配置</h3>
+            <div class="permission-matrix">
+              <button class="perm-tab active" data-level="1">Level 1</button>
+              <button class="perm-tab" data-level="2">Level 2</button>
+              <button class="perm-tab" data-level="3">Level 3</button>
+              <button class="perm-tab" data-level="4">Level 4</button>
+            </div>
+            <div class="perm-detail" id="permDetail">
+              <h4>只读建议型</h4>
+              <p>只能读取信息、分析内容、提供建议，不执行任何写操作。适合刚开始试用。</p>
+              <div class="perm-capabilities">
+                <div class="perm-item allowed">搜索资料</div>
+                <div class="perm-item allowed">阅读文档</div>
+                <div class="perm-item blocked">生成内容</div>
+                <div class="perm-item blocked">修改代码</div>
+                <div class="perm-item blocked">发送邮件</div>
+                <div class="perm-item blocked">数据库操作</div>
+              </div>
+              <div class="perm-summary">
+                <strong>适用场景：</strong>资料收集、信息分析、提供建议
+                <br>
+                <strong>风险等级：</strong>低
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="workshop-section" id="section-workflow">
+        <div class="section-head">
+          <h2>生成工作流</h2>
+          <p>根据选择的场景和能力，生成可视化工作流方案。</p>
+        </div>
+        <div class="workflow-generator">
+          <div class="workflow-controls">
+            <label>
+              <span>工作流深度</span>
+              <select id="workflowDepth">
+                <option value="light">轻量（3-5步）</option>
+                <option value="medium">标准（6-8步）</option>
+                <option value="deep">深度（9步以上）</option>
+              </select>
+            </label>
+            <button type="button" id="generateWorkflow">重新生成</button>
+          </div>
+          <div class="workflow-visualization" id="workflowVisualization">
+            <div class="workflow-header">
+              <h3 id="workflowTitle">资料研究工作流（轻量）</h3>
+            </div>
+            <div class="workflow-steps" id="workflowSteps"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="workshop-section" id="section-checklist">
+        <div class="section-head">
+          <h2>风险检查与方案导出</h2>
+          <p>完成上线前检查，导出完整的智能体设计方案。</p>
+        </div>
+        <div class="checklist-section">
+          <div class="checklist-grid">
+            <div class="checklist-group">
+              <h3>目标与输入</h3>
+              <label><input type="checkbox" class="risk-check" /> 目标可以用一句话说清楚</label>
+              <label><input type="checkbox" class="risk-check" /> 输入资料来源稳定可靠</label>
+              <label><input type="checkbox" class="risk-check" /> 有明确的输入格式要求</label>
+            </div>
+            <div class="checklist-group">
+              <h3>权限与安全</h3>
+              <label><input type="checkbox" class="risk-check" /> 高风险动作需要人工确认</label>
+              <label><input type="checkbox" class="risk-check" /> 敏感数据已经脱敏或限制访问</label>
+              <label><input type="checkbox" class="risk-check" /> 权限按最小必要原则配置</label>
+            </div>
+            <div class="checklist-group">
+              <h3>输出与验证</h3>
+              <label><input type="checkbox" class="risk-check" /> 输出结果有验证或回滚方式</label>
+              <label><input type="checkbox" class="risk-check" /> 有明确的失败回退机制</label>
+              <label><input type="checkbox" class="risk-check" /> 执行日志可以追溯</label>
+            </div>
+          </div>
+          <div class="checklist-summary">
+            <div class="score-display">
+              <strong id="checklistScore">0/9</strong>
+              <span id="checklistText">先从只读建议型智能体开始。</span>
+            </div>
+            <button type="button" id="exportPlan">导出智能体方案</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="workshop-section" id="section-compare">
+        <div class="section-head">
+          <h2>场景对比分析</h2>
+          <p>横向对比5个场景的核心能力和适用条件。</p>
+        </div>
+        <div class="compare-table-wrap">
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th>维度</th>
+                <th>资料研究</th>
+                <th>内容运营</th>
+                <th>客服支持</th>
+                <th>代码维护</th>
+                <th>销售跟进</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>核心目标</strong></td>
+                <td>收集资料、提取观点</td>
+                <td>选题到发布全流程</td>
+                <td>回答问题、分类升级</td>
+                <td>定位问题、修复建议</td>
+                <td>整理线索、跟进客户</td>
+              </tr>
+              <tr>
+                <td><strong>主要工具</strong></td>
+                <td>搜索、阅读</td>
+                <td>写作、搜索、阅读</td>
+                <td>阅读、写作</td>
+                <td>阅读、代码、写作</td>
+                <td>阅读、写作、邮件</td>
+              </tr>
+              <tr>
+                <td><strong>输出形式</strong></td>
+                <td>研究摘要、来源清单</td>
+                <td>选题池、脚本、标题</td>
+                <td>标准回复、问题分类</td>
+                <td>修改方案、测试建议</td>
+                <td>线索摘要、邮件草稿</td>
+              </tr>
+              <tr>
+                <td><strong>风险等级</strong></td>
+                <td>低</td>
+                <td>中</td>
+                <td>中</td>
+                <td>高</td>
+                <td>中</td>
+              </tr>
+              <tr>
+                <td><strong>推荐权限</strong></td>
+                <td>Level 2</td>
+                <td>Level 2</td>
+                <td>Level 2</td>
+                <td>Level 3</td>
+                <td>Level 2</td>
+              </tr>
+              <tr class="expandable">
+                <td><strong>详细能力</strong> <button class="expand-btn">展开</button></td>
+                <td colspan="5" class="expand-content">
+                  <div class="expand-grid">
+                    <div>
+                      <h4>资料研究助手</h4>
+                      <ul>
+                        <li>搜索网络信息</li>
+                        <li>阅读文档内容</li>
+                        <li>提取关键观点</li>
+                        <li>生成研究摘要</li>
+                        <li>列出待核验问题</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h4>内容运营助手</h4>
+                      <ul>
+                        <li>生成选题方案</li>
+                        <li>收集参考资料</li>
+                        <li>撰写文章提纲</li>
+                        <li>生成内容草稿</li>
+                        <li>提供标题建议</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h4>客服知识库助手</h4>
+                      <ul>
+                        <li>检索知识库</li>
+                        <li>生成标准回复</li>
+                        <li>问题分类标记</li>
+                        <li>识别不确定性</li>
+                        <li>升级处理建议</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h4>代码维护助手</h4>
+                      <ul>
+                        <li>阅读代码文件</li>
+                        <li>定位问题根源</li>
+                        <li>提出修复方案</li>
+                        <li>生成测试用例</li>
+                        <li>分析修改风险</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h4>销售线索整理助手</h4>
+                      <ul>
+                        <li>整理客户资料</li>
+                        <li>分析客户需求</li>
+                        <li>生成跟进摘要</li>
+                        <li>起草跟进邮件</li>
+                        <li>评估客户价值</li>
+                      </ul>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="workshop-section" id="section-knowledge">
+        <div class="section-head">
+          <h2>智能体知识与常见问题</h2>
+          <p>了解智能体的核心概念和使用要点。</p>
+        </div>
+        <div class="knowledge-content">
+          <div class="knowledge-section">
+            <h3>什么是 AI 智能体</h3>
+            <p>
+              AI 智能体（AI Agent）是一种能够自主执行任务的 AI 系统。与普通聊天助手不同，智能体不仅能回答问题，还能：理解并拆解复杂目标、制定执行计划和步骤、调用外部工具（搜索、API、数据库等）、记忆历史上下文和用户偏好、在遇到问题时调整策略、输出结构化结果供后续使用。
+            </p>
+          </div>
+          <div class="knowledge-section">
+            <h3>一个简单设计模板</h3>
+            <pre>智能体设计模板
+
+目标：[用一句话描述智能体要完成的任务]
+
+输入来源：
+- [资料来源 1]
+- [资料来源 2]
+- [数据格式要求]
+
+授权工具：
+- [工具名称及用途]
+- [工具名称及用途]
+
+审批节点：
+- [需要人工确认的动作]
+- [审批流程描述]
+
+输出格式：
+- [输出类型和格式]
+- [交付标准]
+
+验证方法：
+- [如何判断结果正确]
+- [验证步骤]
+
+失败回退：
+- [失败处理策略]
+- [异常情况处理]
+</pre>
+          </div>
+          <div class="knowledge-section">
+            <h3>常见问题</h3>
+            <details>
+              <summary>智能体和聊天机器人有什么区别？</summary>
+              <p>聊天机器人主要是对话式交互，回答用户的问题。智能体则更强调目标导向，能够拆解任务、调用工具、规划步骤并完成具体工作。简单来说，聊天机器人是"问与答"，智能体是"计划与执行"。</p>
+            </details>
+            <details>
+              <summary>我应该从哪个场景开始尝试智能体？</summary>
+              <p>建议从低风险、高重复性的任务开始，例如资料整理、会议纪要、报告摘要等。这些任务不需要修改生产数据，即使出错也容易纠正。等流程稳定后，再逐步尝试更复杂的场景。</p>
+            </details>
+            <details>
+              <summary>智能体需要多少技术能力才能搭建？</summary>
+              <p>现在有很多低代码/无代码的智能体平台，可以让非技术人员也能搭建简单的智能体。如果需要定制功能或接入企业内部系统，可能需要一定的开发能力。建议先从平台开始尝试，了解智能体的工作方式后再考虑定制开发。</p>
+            </details>
+            <details>
+              <summary>使用智能体有哪些安全风险？</summary>
+              <p>主要风险包括：数据隐私（智能体可能接触敏感信息）、权限滥用（智能体可能执行未授权操作）、事实错误（智能体可能生成错误信息）、以及不可预测的行为（复杂任务中智能体的决策可能超出预期）。建议从最小权限原则开始，逐步开放能力，并保留关键步骤的人工确认。</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+        <a href="../index.html">返回首页</a>
+        <a href="./skill-builder.html">Skill 专题</a>
+        <a href="./privacy-and-ai-tools.html">隐私边界</a>
+        <a href="./build-personal-ai-workflow.html">个人 AI 工作流</a>
+        <a href="../guides/beginner-ai-tools.html">新手入门指南</a>
+      </footer>
+    </main>
+
+    <script>
+      const agentProfiles = {
+        research: {
+          name: "资料研究助手",
+          goal: "围绕一个主题收集资料、提取观点、列出来源和待核验问题。",
+          output: "研究摘要、来源清单、观点对比表、下一步问题",
+          risk: "容易把过时资料和不同语境的信息混在一起，必须打开来源核验。",
+          recommendedLevel: 2,
+          tools: ["搜索资料", "阅读文档", "生成内容"]
+        },
+        content: {
+          name: "内容运营助手",
+          goal: "从选题、资料、脚本、标题、封面方向到发布复盘提供流程辅助。",
+          output: "选题池、脚本草稿、标题方案、复盘要点",
+          risk: "不要直接发布未经核验的观点，品牌语气和事实仍需人工确认。",
+          recommendedLevel: 2,
+          tools: ["搜索资料", "阅读文档", "生成内容"]
+        },
+        support: {
+          name: "客服知识库助手",
+          goal: "根据知识库回答常见问题，并标记无法确认或需要人工介入的问题。",
+          output: "标准回复、问题分类、知识库缺口、升级处理建议",
+          risk: "不能编造政策、价格和承诺，知识库没有的信息应明确说明无法确认。",
+          recommendedLevel: 2,
+          tools: ["阅读文档", "生成内容"]
+        },
+        coding: {
+          name: "代码维护助手",
+          goal: "阅读报错和相关文件，提出修复思路、测试清单和低风险改动建议。",
+          output: "问题定位、修改方案、测试建议、风险说明",
+          risk: "涉及权限、支付、删除和生产数据的改动必须人工审查并运行测试。",
+          recommendedLevel: 3,
+          tools: ["阅读文档", "生成内容", "修改代码"]
+        },
+        sales: {
+          name: "销售线索整理助手",
+          goal: "整理客户资料、归类需求、生成跟进摘要和邮件草稿。",
+          output: "线索摘要、客户标签、跟进建议、邮件草稿",
+          risk: "客户隐私和商业信息需要脱敏，外发内容必须人工确认。",
+          recommendedLevel: 2,
+          tools: ["阅读文档", "生成内容", "发送邮件"]
+        },
+      };
+
+      const permissionLevels = {
+        1: {
+          name: "只读建议型",
+          desc: "只能读取信息、分析内容、提供建议，不执行任何写操作。适合刚开始试用。",
+          capabilities: {
+            search: "allowed",
+            docs: "allowed",
+            write: "blocked",
+            code: "blocked",
+            email: "blocked",
+            database: "blocked"
+          },
+          summary: "适用场景：资料收集、信息分析、提供建议<br>风险等级：低"
+        },
+        2: {
+          name: "草稿生成型",
+          desc: "可以生成文档、邮件或方案草稿，但提交前需要人工确认。适合内容创作场景。",
+          capabilities: {
+            search: "allowed",
+            docs: "allowed",
+            write: "allowed",
+            code: "blocked",
+            email: "blocked",
+            database: "blocked"
+          },
+          summary: "适用场景：内容创作、报告生成、方案草拟<br>风险等级：中"
+        },
+        3: {
+          name: "半自动执行型",
+          desc: "低风险步骤可以自动执行，高风险动作保留审批。适合流程较成熟的场景。",
+          capabilities: {
+            search: "allowed",
+            docs: "allowed",
+            write: "allowed",
+            code: "allowed",
+            email: "allowed",
+            database: "blocked"
+          },
+          summary: "适用场景：代码维护、客户跟进、流程自动化<br>风险等级：中高"
+        },
+        4: {
+          name: "全自动执行型",
+          desc: "大部分任务可以自动完成，仅在异常情况下需要人工介入。适合高度标准化的任务。",
+          capabilities: {
+            search: "allowed",
+            docs: "allowed",
+            write: "allowed",
+            code: "allowed",
+            email: "allowed",
+            database: "allowed"
+          },
+          summary: "适用场景：高度标准化流程、自动化运维、批量处理<br>风险等级：高"
+        }
+      };
+
+      const toolNames = {
+        search: "搜索资料",
+        docs: "阅读文档",
+        write: "生成内容",
+        code: "修改代码",
+        email: "发送邮件",
+        database: "数据库操作"
+      };
+
+      const workflowStepsData = {
+        research: {
+          light: [
+            { title: "明确研究主题", desc: "确定核心问题和研究范围", icon: "🎯" },
+            { title: "搜索相关资料", desc: "使用 AI 搜索收集多个来源", icon: "🔍" },
+            { title: "整理关键观点", desc: "提取主要观点并标注来源", icon: "📝" },
+            { title: "生成研究摘要", desc: "汇总资料形成结构化摘要", icon: "📊" },
+          ],
+          medium: [
+            { title: "明确研究主题", desc: "确定核心问题和研究范围", icon: "🎯" },
+            { title: "搜索相关资料", desc: "使用 AI 搜索收集多个来源", icon: "🔍" },
+            { title: "来源质量评估", desc: "检查信息时效性和可信度", icon: "✅" },
+            { title: "整理关键观点", desc: "提取主要观点并标注来源", icon: "📝" },
+            { title: "观点对比分析", desc: "对比不同来源的立场和证据", icon: "⚖️" },
+            { title: "生成研究摘要", desc: "汇总资料形成结构化摘要", icon: "📊" },
+            { title: "列出待核验问题", desc: "标记需要进一步确认的内容", icon: "❓" },
+          ],
+          deep: [
+            { title: "明确研究主题", desc: "确定核心问题和研究范围", icon: "🎯" },
+            { title: "搜索相关资料", desc: "使用 AI 搜索收集多个来源", icon: "🔍" },
+            { title: "来源质量评估", desc: "检查信息时效性和可信度", icon: "✅" },
+            { title: "阅读原始文档", desc: "打开关键来源阅读原文", icon: "📖" },
+            { title: "整理关键观点", desc: "提取主要观点并标注来源", icon: "📝" },
+            { title: "观点对比分析", desc: "对比不同来源的立场和证据", icon: "⚖️" },
+            { title: "数据交叉验证", desc: "用多个来源验证关键事实", icon: "🔄" },
+            { title: "生成研究摘要", desc: "汇总资料形成结构化摘要", icon: "📊" },
+            { title: "列出待核验问题", desc: "标记需要进一步确认的内容", icon: "❓" },
+            { title: "制定后续计划", desc: "确定下一步研究方向", icon: "📅" },
+          ],
+        },
+        content: {
+          light: [
+            { title: "确定内容主题", desc: "明确目标读者和内容方向", icon: "🎯" },
+            { title: "收集参考资料", desc: "搜索相关素材和案例", icon: "🔍" },
+            { title: "生成文章提纲", desc: "规划文章结构和要点", icon: "📝" },
+            { title: "撰写初稿内容", desc: "按提纲生成完整草稿", icon: "✍️" },
+          ],
+          medium: [
+            { title: "确定内容主题", desc: "明确目标读者和内容方向", icon: "🎯" },
+            { title: "收集参考资料", desc: "搜索相关素材和案例", icon: "🔍" },
+            { title: "生成标题方案", desc: "提供多个标题选项", icon: "📌" },
+            { title: "生成文章提纲", desc: "规划文章结构和要点", icon: "📝" },
+            { title: "撰写初稿内容", desc: "按提纲生成完整草稿", icon: "✍️" },
+            { title: "优化内容结构", desc: "调整段落顺序和逻辑", icon: "🔧" },
+            { title: "事实核验检查", desc: "确认关键信息的准确性", icon: "✅" },
+          ],
+          deep: [
+            { title: "确定内容主题", desc: "明确目标读者和内容方向", icon: "🎯" },
+            { title: "收集参考资料", desc: "搜索相关素材和案例", icon: "🔍" },
+            { title: "分析受众需求", desc: "了解目标读者痛点和兴趣", icon: "👥" },
+            { title: "生成标题方案", desc: "提供多个标题选项", icon: "📌" },
+            { title: "生成文章提纲", desc: "规划文章结构和要点", icon: "📝" },
+            { title: "撰写初稿内容", desc: "按提纲生成完整草稿", icon: "✍️" },
+            { title: "优化内容结构", desc: "调整段落顺序和逻辑", icon: "🔧" },
+            { title: "润色语言表达", desc: "提升文字质量和可读性", icon: "✨" },
+            { title: "事实核验检查", desc: "确认关键信息的准确性", icon: "✅" },
+            { title: "生成封面方向", desc: "提供视觉设计建议", icon: "🎨" },
+            { title: "准备发布素材", desc: "生成摘要、标签和配图文案", icon: "📦" },
+          ],
+        },
+        support: {
+          light: [
+            { title: "接收用户问题", desc: "获取用户咨询内容", icon: "💬" },
+            { title: "检索知识库", desc: "查找相关知识条目", icon: "🔍" },
+            { title: "生成回复方案", desc: "根据知识库生成标准回复", icon: "✍️" },
+            { title: "人工确认发送", desc: "审核后发送给用户", icon: "✅" },
+          ],
+          medium: [
+            { title: "接收用户问题", desc: "获取用户咨询内容", icon: "💬" },
+            { title: "意图识别分类", desc: "判断问题类型和优先级", icon: "🏷️" },
+            { title: "检索知识库", desc: "查找相关知识条目", icon: "🔍" },
+            { title: "生成回复方案", desc: "根据知识库生成标准回复", icon: "✍️" },
+            { title: "检测不确定性", desc: "识别无法确认的内容", icon: "⚠️" },
+            { title: "人工确认发送", desc: "审核后发送给用户", icon: "✅" },
+            { title: "记录问题反馈", desc: "收集未解决问题用于知识库更新", icon: "📝" },
+          ],
+          deep: [
+            { title: "接收用户问题", desc: "获取用户咨询内容", icon: "💬" },
+            { title: "意图识别分类", desc: "判断问题类型和优先级", icon: "🏷️" },
+            { title: "检索知识库", desc: "查找相关知识条目", icon: "🔍" },
+            { title: "生成回复方案", desc: "根据知识库生成标准回复", icon: "✍️" },
+            { title: "检测不确定性", desc: "识别无法确认的内容", icon: "⚠️" },
+            { title: "风险评估", desc: "判断是否涉及敏感信息", icon: "🛡️" },
+            { title: "升级处理判断", desc: "确定是否需要转人工处理", icon: "⬆️" },
+            { title: "人工确认发送", desc: "审核后发送给用户", icon: "✅" },
+            { title: "记录问题反馈", desc: "收集未解决问题用于知识库更新", icon: "📝" },
+            { title: "知识库更新建议", desc: "提出知识条目优化建议", icon: "🔄" },
+          ],
+        },
+        coding: {
+          light: [
+            { title: "理解问题需求", desc: "明确代码修改目标", icon: "🎯" },
+            { title: "分析相关代码", desc: "阅读受影响的文件", icon: "📖" },
+            { title: "提出修改方案", desc: "生成代码改动建议", icon: "💡" },
+            { title: "人工审查验证", desc: "检查代码并运行测试", icon: "✅" },
+          ],
+          medium: [
+            { title: "理解问题需求", desc: "明确代码修改目标", icon: "🎯" },
+            { title: "分析相关代码", desc: "阅读受影响的文件", icon: "📖" },
+            { title: "定位问题根源", desc: "找到问题所在的具体位置", icon: "📍" },
+            { title: "提出修改方案", desc: "生成代码改动建议", icon: "💡" },
+            { title: "评估修改风险", desc: "分析可能的副作用", icon: "⚠️" },
+            { title: "编写测试用例", desc: "生成相关测试代码", icon: "🧪" },
+            { title: "人工审查验证", desc: "检查代码并运行测试", icon: "✅" },
+          ],
+          deep: [
+            { title: "理解问题需求", desc: "明确代码修改目标", icon: "🎯" },
+            { title: "分析相关代码", desc: "阅读受影响的文件", icon: "📖" },
+            { title: "理解系统架构", desc: "了解模块间的依赖关系", icon: "🏗️" },
+            { title: "定位问题根源", desc: "找到问题所在的具体位置", icon: "📍" },
+            { title: "提出修改方案", desc: "生成代码改动建议", icon: "💡" },
+            { title: "评估修改风险", desc: "分析可能的副作用", icon: "⚠️" },
+            { title: "编写测试用例", desc: "生成相关测试代码", icon: "🧪" },
+            { title: "执行代码修改", desc: "应用代码变更", icon: "🔧" },
+            { title: "运行测试验证", desc: "执行测试确保没有回归", icon: "✅" },
+            { title: "人工审查验证", desc: "检查代码 diff 并确认", icon: "👀" },
+            { title: "提交代码变更", desc: "创建 PR 并记录变更说明", icon: "📤" },
+          ],
+        },
+        sales: {
+          light: [
+            { title: "收集客户资料", desc: "获取客户基本信息", icon: "📥" },
+            { title: "分析客户需求", desc: "理解客户痛点和目标", icon: "💡" },
+            { title: "生成跟进摘要", desc: "整理关键信息用于后续跟进", icon: "📝" },
+            { title: "起草跟进邮件", desc: "生成邮件草稿", icon: "✉️" },
+          ],
+          medium: [
+            { title: "收集客户资料", desc: "获取客户基本信息", icon: "📥" },
+            { title: "分析客户需求", desc: "理解客户痛点和目标", icon: "💡" },
+            { title: "客户标签分类", desc: "按行业、规模、需求类型分类", icon: "🏷️" },
+            { title: "生成跟进摘要", desc: "整理关键信息用于后续跟进", icon: "📝" },
+            { title: "制定跟进策略", desc: "建议下一步行动方案", icon: "🎯" },
+            { title: "起草跟进邮件", desc: "生成邮件草稿", icon: "✉️" },
+            { title: "记录跟进结果", desc: "更新客户状态和反馈", icon: "📊" },
+          ],
+          deep: [
+            { title: "收集客户资料", desc: "获取客户基本信息", icon: "📥" },
+            { title: "分析客户需求", desc: "理解客户痛点和目标", icon: "💡" },
+            { title: "客户标签分类", desc: "按行业、规模、需求类型分类", icon: "🏷️" },
+            { title: "评估客户价值", desc: "判断潜在合作价值", icon: "💰" },
+            { title: "生成跟进摘要", desc: "整理关键信息用于后续跟进", icon: "📝" },
+            { title: "制定跟进策略", desc: "建议下一步行动方案", icon: "🎯" },
+            { title: "起草跟进邮件", desc: "生成邮件草稿", icon: "✉️" },
+            { title: "准备演示材料", desc: "提供针对性材料建议", icon: "📦" },
+            { title: "记录跟进结果", desc: "更新客户状态和反馈", icon: "📊" },
+            { title: "分析转化瓶颈", desc: "识别阻碍成交的问题", icon: "🔍" },
+            { title: "优化跟进策略", desc: "根据反馈调整后续方案", icon: "🔄" },
+          ],
+        },
+      };
+
+      let currentScene = "research";
+      let currentLevel = 1;
+
+      const sceneCards = document.querySelectorAll(".scene-card");
+      const detailTitle = document.querySelector("#detailTitle");
+      const detailGoal = document.querySelector("#detailGoal");
+      const detailOutput = document.querySelector("#detailOutput");
+      const detailRisk = document.querySelector("#detailRisk");
+      const detailTools = document.querySelector("#detailTools");
+
+      sceneCards.forEach(card => {
+        card.addEventListener("click", () => {
+          sceneCards.forEach(c => c.classList.remove("active"));
+          card.classList.add("active");
+          currentScene = card.dataset.scene;
+          const profile = agentProfiles[currentScene];
+          detailTitle.textContent = profile.name;
+          detailGoal.textContent = profile.goal;
+          detailOutput.textContent = profile.output;
+          detailRisk.textContent = profile.risk;
+          detailTools.innerHTML = profile.tools.map(tool => `<span>${tool}</span>`).join("");
+          renderWorkflow();
+        });
+      });
+
+      const permTabs = document.querySelectorAll(".perm-tab");
+      const permDetail = document.querySelector("#permDetail");
+
+      permTabs.forEach(tab => {
+        tab.addEventListener("click", () => {
+          permTabs.forEach(t => t.classList.remove("active"));
+          tab.classList.add("active");
+          currentLevel = parseInt(tab.dataset.level);
+          renderPermissionDetail();
+        });
+      });
+
+      function renderPermissionDetail() {
+        const level = permissionLevels[currentLevel];
+        permDetail.innerHTML = `
+          <h4>${level.name}</h4>
+          <p>${level.desc}</p>
+          <div class="perm-capabilities">
+            ${Object.entries(level.capabilities).map(([key, value]) => `
+              <div class="perm-item ${value}">${toolNames[key]}</div>
+            `).join("")}
+          </div>
+          <div class="perm-summary">
+            ${level.summary}
+          </div>
+        `;
+      }
+
+      const workflowDepth = document.querySelector("#workflowDepth");
+      const generateWorkflowBtn = document.querySelector("#generateWorkflow");
+      const workflowTitle = document.querySelector("#workflowTitle");
+      const workflowSteps = document.querySelector("#workflowSteps");
+
+      function renderWorkflow() {
+        const depth = workflowDepth.value;
+        const steps = workflowStepsData[currentScene][depth];
+        const depthNames = { light: "轻量", medium: "标准", deep: "深度" };
+        const profile = agentProfiles[currentScene];
+        workflowTitle.textContent = `${profile.name}工作流（${depthNames[depth]}）`;
+        
+        workflowSteps.innerHTML = `
+          <div class="workflow-flow">
+            ${steps.map((step, index) => `
+              <div class="flow-step">
+                <div class="step-node">
+                  <span class="step-icon">${step.icon}</span>
+                  <span class="step-number">${index + 1}</span>
+                </div>
+                <div class="step-info">
+                  <strong>${step.title}</strong>
+                  <p>${step.desc}</p>
+                </div>
+                ${index < steps.length - 1 ? '<div class="step-arrow"></div>' : ''}
+              </div>
+            `).join("")}
+          </div>
+        `;
+      }
+
+      generateWorkflowBtn.addEventListener("click", renderWorkflow);
+      workflowDepth.addEventListener("change", renderWorkflow);
+
+      const riskChecks = document.querySelectorAll(".risk-check");
+      const checklistScore = document.querySelector("#checklistScore");
+      const checklistText = document.querySelector("#checklistText");
+
+      function updateChecklist() {
+        const checked = riskChecks.filter(c => c.checked).length;
+        checklistScore.textContent = `${checked}/9`;
+        if (checked <= 2) {
+          checklistText.textContent = "先从只读建议型智能体开始。";
+        } else if (checked <= 5) {
+          checklistText.textContent = "可以做内部试运行，但要保留人工确认。";
+        } else if (checked <= 7) {
+          checklistText.textContent = "方案比较成熟，可以设计小范围试点。";
+        } else {
+          checklistText.textContent = "方案完善，可以进入正式上线流程。";
+        }
+      }
+
+      riskChecks.forEach(check => check.addEventListener("change", updateChecklist));
+      updateChecklist();
+
+      const exportPlanBtn = document.querySelector("#exportPlan");
+
+      exportPlanBtn.addEventListener("click", () => {
+        const profile = agentProfiles[currentScene];
+        const level = permissionLevels[currentLevel];
+        const checked = riskChecks.filter(c => c.checked).length;
+        const depth = workflowDepth.value;
+        const steps = workflowStepsData[currentScene][depth];
+        
+        const plan = `
+# 智能体设计方案
+
+## 1. 基本信息
+- 智能体名称：${profile.name}
+- 权限级别：Level ${currentLevel} - ${level.name}
+- 风险检查：${checked}/9 通过
+
+## 2. 目标与输出
+- 核心目标：${profile.goal}
+- 输出形式：${profile.output}
+
+## 3. 授权工具
+${Object.entries(level.capabilities)
+  .filter(([,v]) => v === "allowed")
+  .map(([k]) => `- ${toolNames[k]}`)
+  .join("\n")}
+
+## 4. 工作流步骤（${depth === "light" ? "轻量" : depth === "medium" ? "标准" : "深度"}）
+${steps.map((step, i) => `${i + 1}. ${step.title}：${step.desc}`).join("\n")}
+
+## 5. 风险提示
+${profile.risk}
+
+## 6. 权限说明
+${level.desc}
+${level.summary}
+        `.trim();
+
+        const blob = new Blob([plan], { type: "text/markdown" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `智能体方案_${profile.name}.md`;
+        a.click();
+        URL.revokeObjectURL(url);
+      });
+
+      const expandBtn = document.querySelector(".expand-btn");
+      const expandContent = document.querySelector(".expand-content");
+
+      expandBtn.addEventListener("click", () => {
+        expandContent.classList.toggle("expanded");
+        expandBtn.textContent = expandContent.classList.contains("expanded") ? "收起" : "展开";
+      });
+
+      const stepBtns = document.querySelectorAll(".step-btn");
+
+      stepBtns.forEach(btn => {
+        btn.addEventListener("click", () => {
+          const step = btn.dataset.step;
+          const section = document.querySelector(`#section-${["scene", "capability", "workflow", "checklist"][step - 1]}`);
+          if (section) {
+            section.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        });
+      });
+
+      renderPermissionDetail();
+      renderWorkflow();
+
+      const toolCheckboxes = document.querySelectorAll(".tool-checkbox input");
+      toolCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener("change", function() {
+          const label = this.closest(".tool-checkbox");
+          if (this.checked) {
+            label.classList.add("checked");
+          } else {
+            label.classList.remove("checked");
+          }
+        });
+        // Initialize state
+        const label = checkbox.closest(".tool-checkbox");
+        if (checkbox.checked) {
+          label.classList.add("checked");
+        }
+      });
+    </script>
+  </body>
+</html>
